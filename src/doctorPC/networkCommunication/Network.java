@@ -42,6 +42,7 @@ public class Network {
         }).start();
     }
 
+
     public void send(String message) {
         try {
             //it's first connection or not
