@@ -21,6 +21,19 @@ public class Network {
         this.serverAddress = serverAddress;
         this.port = port;
         this.myServerDoctor = myServerDoctor;
+
+        try {
+            //it's first connection or not
+            initNetworkState(serverAddress, port);
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Connection is failed");
+            alert.setContentText("Нет подключения в серверу");
+            alert.showAndWait();
+        }
+
     }
 
     //creat connection
@@ -29,34 +42,29 @@ public class Network {
         this.outputStream = new DataOutputStream(socket.getOutputStream());
         this.inputStream = new DataInputStream(socket.getInputStream());
 
+        //подключили и ждем сообщений
+        getMessage();
+    }
+
+    public void getMessage(){
         new Thread(() ->{
             while (true){
-               //waiting for message
-               try {
-                   String message = inputStream.readUTF();
-                   Platform.runLater(() -> myServerDoctor.processRetrievedMessage(message));
-               } catch (IOException e){
-                   System.exit(0);
-               }
+                //waiting for message
+                try {
+                    String message = inputStream.readUTF();
+                    Platform.runLater(() -> myServerDoctor.processRetrievedMessage(message));
+                } catch (IOException e){
+                    System.exit(0);
+                }
             }
         }).start();
     }
 
-
-    public void send(String message) {
+    public void sendMessage(String message) {
         try {
-            //it's first connection or not
-            if (outputStream == null) {
-                initNetworkState(serverAddress, port);
-            }
             outputStream.writeUTF(message);
-        }
-        catch (IOException e){
-            System.out.println(e.getMessage());
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Connection is failed");
-            alert.setContentText("Нет подключения в серверу");
-            alert.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

@@ -1,6 +1,7 @@
 package doctorPC.networkCommunication;
 
 import doctorPC.iterfaceDocktor.Controller;
+import doctorPC.workWithMessage.GetMessage;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,9 +15,10 @@ public class MyServerDoctor implements IService{
     private int hostPort;
 
     private Network network;
-
-
+    private GetMessage getMessage;
+    private Controller controller;
     public MyServerDoctor(Controller controller) {
+        this.controller = controller;
         //есть какая то камуникация с контроллером 
         initialise();
     }
@@ -24,6 +26,7 @@ public class MyServerDoctor implements IService{
     private void initialise() {
         readProperties();
         startConnectionToServer();
+        this.getMessage = new GetMessage(this,controller);
     }
 
     private void readProperties() {
@@ -41,15 +44,13 @@ public class MyServerDoctor implements IService{
         this.network = new Network(hostAddress, hostPort, this);
     }
 
-
-
     @Override
     public void sendMessage(String message) {
-        network.send(message);
+        network.sendMessage(message);
     }
 
     @Override
     public void processRetrievedMessage(String message) {
-
+        getMessage.sendMessageToWorkWith(message);
     }
 }
