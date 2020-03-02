@@ -16,15 +16,14 @@ public class MyServer {
     public MyServer() {
         System.out.println("Server is running");
         try(ServerSocket serverSocket = new ServerSocket(PORT)) {
-            //здесь стартует база данных с логином
-            //!!!!!!!
+            //BD starts
             sqlServer.start();
 
             while (true){
                 System.out.println("Waiting for client!!");
                 Socket socket = serverSocket.accept();
                 System.out.println("Client is connected");
-                new ClientHandler(socket,this);
+                new ClientHandler(socket,this,sqlServer);
             }
 
         } catch (IOException e) {

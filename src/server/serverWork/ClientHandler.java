@@ -2,11 +2,14 @@ package server.serverWork;
 
 import server.workWithMessage.GetMessage;
 import server.workWithMessage.SendMessage;
+import server.workWithSQL.RequirementSQL;
+import server.workWithSQL.SQLServer;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.SQLException;
 
 public class ClientHandler {
     private final Socket socket;
@@ -17,23 +20,34 @@ public class ClientHandler {
     private GetMessage getMessage;
     private SendMessage sendMessage;
 
-    public ClientHandler(Socket socket, MyServer myServer) throws IOException {
-
+    public ClientHandler(Socket socket, MyServer myServer, SQLServer sqlServer) throws IOException {
+        //creat the connection
         this.socket = socket;
         this.myServer = myServer;
         this.in = new DataInputStream(socket.getInputStream());
         this.out = new DataOutputStream(socket.getOutputStream());
-        this.getMessage = new GetMessage(this);
-        this.sendMessage = new SendMessage(this);
 
+        this.sendMessage = new SendMessage(this);
+        this.getMessage = new GetMessage(this,sqlServer,sendMessage);
+
+
+        //connection was created. Start to work with getting message
+
+        getMessage();
+    }
+
+    public void getMessage(){
         new Thread(() -> {
             try {
-                String clientMessage = in.readUTF();
-                //ниже тест!!!!
-                getMessage.workWithInformation(clientMessage);
-                sendMessage.sendTest();
-                //System.out.println(clientMessage);
+                while (true) {
+                    String clientMessage = in.readUTF();
+                    //ниже тест!!!!
+                    getMessage.workWithInformation(clientMessage);
+                    //System.out.println(clientMessage);
+                }
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }).start();

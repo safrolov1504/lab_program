@@ -1,4 +1,4 @@
-package doctorPC.workWithMessage;
+package doctorPC.messageWorkWith;
 
 import doctorPC.iterfaceDocktor.Controller;
 import doctorPC.networkCommunication.IService;

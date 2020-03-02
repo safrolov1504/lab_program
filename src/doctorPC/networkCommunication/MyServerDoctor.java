@@ -1,7 +1,7 @@
 package doctorPC.networkCommunication;
 
 import doctorPC.iterfaceDocktor.Controller;
-import doctorPC.workWithMessage.GetMessage;
+import doctorPC.messageWorkWith.GetMessage;
 
 import java.io.IOException;
 import java.io.InputStream;

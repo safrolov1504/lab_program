@@ -2,8 +2,7 @@ package doctorPC.iterfaceDocktor;
 
 import doctorPC.networkCommunication.IService;
 import doctorPC.networkCommunication.MyServerDoctor;
-import doctorPC.workWithMessage.GetMessage;
-import doctorPC.workWithMessage.SendMessage;
+import doctorPC.messageWorkWith.SendMessage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,6 +39,6 @@ public class Controller implements Initializable {
     }
 
     public void button_signIn(ActionEvent actionEvent) {
-        sendMessage.sendLogin("test");
+        sendMessage.checkLogin(textField_login.getText(),testField_pass.getText());
     }
 }

@@ -5,8 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class BaseSQLServer implements SQLServer {
-    private static Connection connection;
+    public static Connection connection;
     private static final String URL_SQL = "jdbc:sqlite:/Users/safrolov/Documents/university/java_program/lab_program/src/server/resources/bd_hospital.db";
+
 
     @Override
     public void start() throws SQLException, ClassNotFoundException {
