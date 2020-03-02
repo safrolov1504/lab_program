@@ -9,20 +9,23 @@ import javafx.stage.Stage;
 
 public class App extends Application {
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("resources/sample.fxml"));
+        ChangeStage.setStage(primaryStage, "resources/loginInterface.fxml","Doctor PC");
 
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        primaryStage.setTitle("Doctor PC");
-        primaryStage.setScene(scene);
-
-        Controller primaryController = loader.getController();
-        primaryStage.setOnHidden(e -> primaryController.shutdown());
-
-        primaryStage.show();
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(getClass().getResource("resources/loginInterface.fxml"));
+//
+//        Parent root = loader.load();
+//        Scene scene = new Scene(root);
+//        primaryStage.setTitle("Doctor PC");
+//        primaryStage.setScene(scene);
+//
+//        Controller primaryController = loader.getController();
+//        primaryStage.setOnHidden(e -> primaryController.shutdown());
+//
+//        primaryStage.show();
     }
 
 

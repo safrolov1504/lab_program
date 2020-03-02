@@ -15,7 +15,7 @@ public class SendMessage {
     public void sendAuthor(User checkLogin) {
         AuthMessage authMessage = new AuthMessage();
         Message message;
-        if(checkLogin.getFirstName().equals("")){
+        if(checkLogin.getFirstName() == null){
             authMessage.message = "Wrong login or password";
             message = Message.creatAuthNOk(authMessage);
         } else {

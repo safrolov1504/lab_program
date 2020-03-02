@@ -14,17 +14,24 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
+    public @FXML AnchorPane window;
     //Login window
-    public @FXML AnchorPane loginWindow;
+    public @FXML VBox loginBox;
     public @FXML TextField textField_login;
     public @FXML PasswordField testField_pass;
     public @FXML Button button_signIn;
+
+
+    //Working window
+    public @FXML GridPane workBox;
+
 
     private IService messageService;
     //private GetMessage getMessage;
     private SendMessage sendMessage;
 
     public void shutdown() {
+
     }
 
     @Override
