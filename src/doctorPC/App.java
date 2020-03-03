@@ -15,7 +15,7 @@ public class App extends Application {
         ChangeStage.setStage(primaryStage, "resources/loginInterface.fxml","Doctor PC");
 
 //        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource("resources/loginInterface.fxml"));
+//        loader.setLocation(getClass().getResource("resources/serviceInterface.fxml"));
 //
 //        Parent root = loader.load();
 //        Scene scene = new Scene(root);

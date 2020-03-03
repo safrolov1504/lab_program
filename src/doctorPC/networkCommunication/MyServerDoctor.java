@@ -17,10 +17,15 @@ public class MyServerDoctor implements IService{
     private Network network;
     private GetMessage getMessage;
     private Controller controller;
+
     public MyServerDoctor(Controller controller) {
         this.controller = controller;
         //есть какая то камуникация с контроллером 
         initialise();
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 
     private void initialise() {

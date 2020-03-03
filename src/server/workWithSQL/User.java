@@ -5,13 +5,17 @@ public class User {
     private String password;
     private String firstName;
     private String secondName;
+    private String role;
+    private String profession;
 
 
-    public User(String login, String password, String firstName, String secondName) {
+    public User(String login, String password, String firstName, String secondName, String role, String profession) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
+        this.role = role;
+        this.profession = profession;
     }
 
     public String getLogin() {
@@ -30,6 +34,14 @@ public class User {
         return secondName;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -37,6 +49,8 @@ public class User {
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
+                ", role='" + role + '\'' +
+                ", profession='" + profession + '\'' +
                 '}';
     }
 }
