@@ -25,6 +25,7 @@
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="0.0" prefWidth="0.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints />
               </columnConstraints>
               <rowConstraints>
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -56,6 +57,7 @@
                   <TextField fx:id="add_field_secondName" promptText="Second name" GridPane.columnIndex="3" GridPane.columnSpan="5" GridPane.rowIndex="8" />
                   <TextField fx:id="add_field_profName" promptText="Profession" GridPane.columnIndex="3" GridPane.columnSpan="5" GridPane.rowIndex="10" />
                   <Button fx:id="add_button_addNewLab" mnemonicParsing="false" onAction="#add_button_addNewLab" prefHeight="27.0" prefWidth="113.0" text="Add a new lab" GridPane.columnIndex="5" GridPane.columnSpan="3" GridPane.rowIndex="12" />
+                  <Button mnemonicParsing="false" onAction="#add_buttonBack" prefHeight="27.0" prefWidth="72.0" text="Back" GridPane.columnIndex="8" GridPane.rowIndex="12" />
                </children>
             </GridPane>
          </children>

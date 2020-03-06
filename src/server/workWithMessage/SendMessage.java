@@ -2,6 +2,7 @@ package server.workWithMessage;
 
 import messageCommons.Message;
 import messageCommons.variosOfMessage.AuthMessage;
+import messageCommons.variosOfMessage.Client;
 import server.serverWork.ClientHandler;
 import server.workWithSQL.User;
 
@@ -38,6 +39,24 @@ public class SendMessage {
             message = Message.creatNewUserOk(authMessage);
         }
         System.out.println(message.toJson());
+        clientHandler.sendMessage(message.toJson());
+    }
+
+    public void sendLookingClient(Client client){
+        if(client.secondName == null){
+            message = Message.creatLookingClientNok(client);
+        } else {
+            message = Message.creatLookingClientOk(client);
+        }
+        clientHandler.sendMessage(message.toJson());
+    }
+
+    public void sendAddClient(Client client){
+        if(client.secondName == null){
+            message = Message.creatAddClientNOk(client);
+        } else {
+            message = Message.creatAddClientOk(client);
+        }
         clientHandler.sendMessage(message.toJson());
     }
 }

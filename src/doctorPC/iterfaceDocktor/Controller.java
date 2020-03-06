@@ -1,14 +1,22 @@
 package doctorPC.iterfaceDocktor;
 
+import doctorPC.ChangeStage;
 import doctorPC.networkCommunication.IService;
 import doctorPC.networkCommunication.MyServerDoctor;
 import doctorPC.messageWorkWith.SendMessage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
+import messageCommons.CommandSecond;
+import messageCommons.variosOfMessage.Client;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -32,9 +40,18 @@ public class Controller implements Initializable {
     public @FXML TextField add_field_profName;
 
     //Working window
-    public @FXML GridPane workBox;
-
-
+    public @FXML Label docWork_nameDoc;
+    public @FXML TextField docWork_fieldFirstName;
+    public @FXML TextField docWork_fieldSecondName;
+    public @FXML TextField docWork_fieldCityBirth;
+    public @FXML DatePicker docWork_dateBirthday;
+    public @FXML TableView<Client> docWork_table;
+    public @FXML TableColumn<Client,String> docWork_table_firstName;
+    public @FXML TableColumn<Client,String> docWork_table_secondName;
+    public @FXML TableColumn<Client,String> docWork_table_city;
+    public @FXML TableColumn<Client,String> docWork_table_dateBirth;
+    public @FXML TableColumn<Client,String> docWork_table_dateVisit;
+    public ObservableList<Client> clientData = FXCollections.observableArrayList();
 
     private IService messageService;
     private SendMessage sendMessage;
@@ -48,7 +65,7 @@ public class Controller implements Initializable {
         try{
             this.messageService = new MyServerDoctor(this);
             //this.getMessage = new GetMessage(this.messageService,this);
-            this.sendMessage = new SendMessage(this.messageService,this);
+            this.sendMessage = new SendMessage(this.messageService);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -75,6 +92,39 @@ public class Controller implements Initializable {
                 add_field_firstName.getText(),
                 add_field_secondName.getText(),
                 add_field_profName.getText());
+    }
+
+    public void add_buttonBack(ActionEvent actionEvent) throws IOException {
+        ChangeStage.setStage((Stage) this.add_field_firstName.getScene().getWindow(),
+                "resources/loginInterface.fxml","Welcome PC");
+    }
+
+    //buttons Doc work
+    public void docWork_buttonLooking(ActionEvent actionEvent) {
+        clientData = FXCollections.observableArrayList();
+
+        sendMessage.lookingForClient(CommandSecond.LOOKING_FOR_CLIENT,
+                docWork_fieldFirstName.getText(),
+                docWork_fieldSecondName.getText(),
+                docWork_fieldCityBirth.getText(),
+                docWork_dateBirthday.getEditor().getText());
+    }
+
+    public void docWork_buttonAddNewClient(ActionEvent actionEvent) {
+        sendMessage.lookingForClient(CommandSecond.ADD_NEW_CLIENT,
+                docWork_fieldFirstName.getText(),
+                docWork_fieldSecondName.getText(),
+                docWork_fieldCityBirth.getText(),
+                docWork_dateBirthday.getEditor().getText());
+    }
+
+    public void docWork_buttonAddNewVisit(ActionEvent actionEvent) {
+
+    }
+
+    public void docWork_buttonBack(ActionEvent actionEvent) throws IOException {
+        ChangeStage.setStage((Stage) this.docWork_fieldCityBirth.getScene().getWindow(),
+                "resources/loginInterface.fxml","Welcome PC");
     }
 
 

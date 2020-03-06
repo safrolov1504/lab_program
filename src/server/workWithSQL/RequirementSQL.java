@@ -1,6 +1,7 @@
 package server.workWithSQL;
 
 import messageCommons.variosOfMessage.AuthMessage;
+import server.workWithMessage.SendMessage;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,6 +38,7 @@ public class RequirementSQL {
         return user;
     }
 
+    //add a new user
     public AuthMessage addLogin(String login, String password, String firstName, String secondName, String role, String profession) throws SQLException {
         AuthMessage authMessage = new AuthMessage();
         ResultSet rs = findUserByLogin(login);
@@ -55,5 +57,47 @@ public class RequirementSQL {
             authMessage.message = "User with this data is already exist";
         }
         return authMessage;
+    }
+
+    public boolean addClient(String firstName, String secondName, String cityOfBirthday, String dateOfBirthday) throws SQLException {
+        ResultSet rs = checkClient(firstName,secondName,cityOfBirthday,dateOfBirthday);
+        if(rs.next()){
+            return false;
+        } else {
+            preparedStatement = sqlServer.connection.prepareStatement
+                    ("INSERT INTO clients (FirstName, SecondName, CityOfBirthday, DateOfBirthday) VALUES" +
+                            "(?, ?, ?, ?)");
+            preparedStatement.setString(1,firstName);
+            preparedStatement.setString(2,secondName);
+            preparedStatement.setString(3,cityOfBirthday);
+            preparedStatement.setString(4,dateOfBirthday);
+            preparedStatement.executeUpdate();
+            preparedStatement.addBatch();
+            return true;
+        }
+    }
+
+    public ResultSet checkClient(String firstName, String secondName, String cityOfBirthday, String dateOfBirthday) throws SQLException {
+        preparedStatement = sqlServer.connection.prepareStatement
+                ("SELECT FirstName, SecondName, CityOfBirthday, DateOfBirthday FROM clients " +
+                        "where FirstName = ? AND SecondName = ? AND CityOfBirthday = ? AND DateOfBirthday = ?");
+        preparedStatement.setString(1,firstName);
+        preparedStatement.setString(2,secondName);
+        preparedStatement.setString(3,cityOfBirthday);
+        preparedStatement.setString(4,dateOfBirthday);
+        ResultSet rs = preparedStatement.executeQuery();
+        preparedStatement.addBatch();
+        return rs;
+    }
+
+    public ResultSet lookingForClint(String firstName, String secondName) throws SQLException {
+        preparedStatement = sqlServer.connection.prepareStatement
+                ("SELECT FirstName, SecondName, CityOfBirthday, DateOfBirthday FROM clients " +
+                        "where FirstName = ? AND SecondName = ?");
+        preparedStatement.setString(1,firstName);
+        preparedStatement.setString(2,secondName);
+        ResultSet rs = preparedStatement.executeQuery();
+        preparedStatement.addBatch();
+        return rs;        
     }
 }

@@ -23,7 +23,7 @@ public class LoginInterfaceMessage implements DifferentTypeMessage {
     }
 
     @Override
-    public void getIntormation(Message message) throws SQLException {
+    public void getInformation(Message message) throws SQLException {
         switch (message.commandSecond){
             case AUTH_MESSAGE:
                 checkAuth(message);

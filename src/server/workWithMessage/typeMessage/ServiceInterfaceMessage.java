@@ -27,7 +27,7 @@ public class ServiceInterfaceMessage implements DifferentTypeMessage {
     }
 
     @Override
-    public void getIntormation(Message message) throws SQLException {
+    public void getInformation(Message message) throws SQLException {
         //this.message = message;
         switch (message.commandSecond){
             case ADD_NEW:
@@ -44,11 +44,13 @@ public class ServiceInterfaceMessage implements DifferentTypeMessage {
         secondName  = authMessage.secondName;
         role = authMessage.role;
         profession = authMessage.profession;
+        authMessage = requirementSQL.addLogin(login, password, firstName, secondName, role, profession);
+
         if(login == "" || password == "" || firstName == "" || secondName == "" || role == "" || profession == ""){
             authMessage.message="Fill all fields";
             sendMessage.sendNewUser(authMessage);
-        } else {
-            sendMessage.sendNewUser(requirementSQL.addLogin(login, password, firstName, secondName, role, profession));
         }
+
+        sendMessage.sendNewUser(authMessage);
     }
 }

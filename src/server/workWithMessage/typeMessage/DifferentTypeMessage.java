@@ -6,5 +6,5 @@ import java.sql.SQLException;
 
 public interface DifferentTypeMessage {
 
-    public void getIntormation(Message message) throws SQLException;
+    public void getInformation(Message message) throws SQLException;
 }

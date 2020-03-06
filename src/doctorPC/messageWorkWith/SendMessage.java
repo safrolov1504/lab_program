@@ -2,20 +2,16 @@ package doctorPC.messageWorkWith;
 
 import doctorPC.iterfaceDocktor.Controller;
 import doctorPC.networkCommunication.IService;
+import messageCommons.CommandSecond;
 import messageCommons.Message;
 import messageCommons.variosOfMessage.AuthMessage;
+import messageCommons.variosOfMessage.Client;
 
 public class SendMessage {
     private IService messageService;
-    private Controller controller;
 
-    public void setController(Controller controller) {
-        this.controller = controller;
-    }
-
-    public SendMessage(IService messageService, Controller controller) {
+    public SendMessage(IService messageService) {
         this.messageService = messageService;
-        this.controller = controller;
     }
 
     public void checkLogin(String login, String password) {
@@ -37,6 +33,23 @@ public class SendMessage {
         authMessage.profession = profession;
 
         Message message = Message.creatNewUser(authMessage);
+        messageService.sendMessage(message.toJson());
+    }
+
+
+    public void lookingForClient(CommandSecond commandSecond,String firstName, String secondName, String cityOfBirthday, String dataOfBirthday) {
+        Client client = new Client();
+        client.firstName = firstName;
+        client.secondName = secondName;
+        client.cityOfBirthday = cityOfBirthday;
+        client.dateOfBirthday = dataOfBirthday;
+
+        Message message = new Message();
+        if(commandSecond == CommandSecond.LOOKING_FOR_CLIENT){
+            message = Message.creatLookingClient(client);
+        } else if(commandSecond == CommandSecond.ADD_NEW_CLIENT){
+           message = Message.creatAddClient(client);
+        }
         messageService.sendMessage(message.toJson());
     }
 }

@@ -9,11 +9,13 @@ public class Message {
 
 
     public AuthMessage authMessage;
+    public Client client;
     public NewUser newUser;
 
     public String toJson() {
         return new Gson().toJson(this);
     }
+
     public static Message fromJson(String json){
         return new Gson().fromJson(json, Message.class);
     }
@@ -60,6 +62,43 @@ public class Message {
     public static Message creatNewUserNok(AuthMessage msg){
         Message m = create(CommandFirst.SERVICE, CommandSecond.ADD_NEW_NOK);
         m.authMessage = msg;
+        return m;
+    }
+
+    public static Message creatLookingClient(Client client){
+        Message m = create(CommandFirst.DOC,CommandSecond.LOOKING_FOR_CLIENT);
+        m.client = client;
+        return m;
+    }
+
+    public static Message creatLookingClientOk(Client client){
+        Message m = create(CommandFirst.DOC,CommandSecond.LOOKING_FOR_CLIENT_OK);
+        m.client = client;
+        return m;
+    }
+
+    public static Message creatLookingClientNok(Client client){
+        Message m = create(CommandFirst.DOC,CommandSecond.LOOKING_FOR_CLIENT_NOK);
+        m.client = client;
+        return m;
+    }
+
+
+    public static Message creatAddClient(Client client){
+        Message m = create(CommandFirst.DOC,CommandSecond.ADD_NEW_CLIENT);
+        m.client = client;
+        return m;
+    }
+
+    public static Message creatAddClientOk(Client client){
+        Message m = create(CommandFirst.DOC,CommandSecond.ADD_CLIENT_OK);
+        m.client = client;
+        return m;
+    }
+
+    public static Message creatAddClientNOk(Client client){
+        Message m = create(CommandFirst.DOC,CommandSecond.ADD_CLIENT_NOK);
+        m.client = client;
         return m;
     }
 

@@ -1,11 +1,10 @@
 package server.workWithMessage;
 
 import messageCommons.Message;
-import messageCommons.variosOfMessage.AuthMessage;
 import server.serverWork.ClientHandler;
-import server.workWithMessage.typeMessage.DifferentTypeMessage;
 import server.workWithMessage.typeMessage.LoginInterfaceMessage;
 import server.workWithMessage.typeMessage.ServiceInterfaceMessage;
+import server.workWithMessage.typeMessage.WorkingInterfaceMessage;
 import server.workWithSQL.BaseSQLServer;
 import server.workWithSQL.RequirementSQL;
 import server.workWithSQL.SQLServer;
@@ -19,16 +18,7 @@ public class GetMessage {
     private SendMessage sendMessage;
     private LoginInterfaceMessage loginInterfaceMessage;
     private ServiceInterfaceMessage serviceInterfaceMessage;
-
-    private AuthMessage authMessage;
-    private String messageOut;
-    private String login;
-    private String password;
-    private String firstName;
-    private String secondName;
-    private String role;
-    private String profession;
-
+    private WorkingInterfaceMessage workingInterfaceMessage;
 
     public GetMessage(ClientHandler clientHandler, SQLServer sqlServer, SendMessage sendMessage) {
         this.clientHandler = clientHandler;
@@ -36,6 +26,7 @@ public class GetMessage {
         this.sendMessage = sendMessage;
         loginInterfaceMessage = new LoginInterfaceMessage(sendMessage,requirementSQL);
         serviceInterfaceMessage = new ServiceInterfaceMessage(sendMessage,requirementSQL);
+        workingInterfaceMessage = new WorkingInterfaceMessage(sendMessage,requirementSQL);
     }
 
     public void workWithInformation(String clientMessage) throws SQLException {
@@ -45,16 +36,17 @@ public class GetMessage {
 
             switch (message.commandFirst){
                 case LOGIN:
-                    loginInterfaceMessage.getIntormation(message);
+                    loginInterfaceMessage.getInformation(message);
                     break;
                 case DOC:
+                    workingInterfaceMessage.getInformation(message);
                     break;
                 case LAB:
 
                     break;
 
                 case SERVICE:
-                    serviceInterfaceMessage.getIntormation(message);
+                    serviceInterfaceMessage.getInformation(message);
                     break;
             }
     }
