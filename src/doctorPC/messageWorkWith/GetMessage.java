@@ -1,15 +1,12 @@
 package doctorPC.messageWorkWith;
 
-import doctorPC.ChangeStage;
 import doctorPC.iterfaceDocktor.Controller;
+import doctorPC.messageWorkWith.typeMessage.AnalysInterfaceMessage;
 import doctorPC.messageWorkWith.typeMessage.LoginInterfaceMessage;
 import doctorPC.messageWorkWith.typeMessage.ServiceInterfaceMessage;
 import doctorPC.messageWorkWith.typeMessage.WorkingInterfaceMessage;
 import doctorPC.networkCommunication.IService;
-import javafx.scene.control.Alert;
-import javafx.stage.Stage;
 import messageCommons.Message;
-import messageCommons.variosOfMessage.AuthMessage;
 
 public class GetMessage {
     private IService messageService;
@@ -17,6 +14,7 @@ public class GetMessage {
     private LoginInterfaceMessage loginInterfaceMessage;
     private ServiceInterfaceMessage serviceInterfaceMessage;
     private WorkingInterfaceMessage workingInterfaceMessage;
+    private AnalysInterfaceMessage labInterfaceMessage;
 
     public void setController(Controller controller) {
         this.controller = controller;
@@ -28,6 +26,7 @@ public class GetMessage {
         this.loginInterfaceMessage = new LoginInterfaceMessage(controller);
         this.serviceInterfaceMessage = new ServiceInterfaceMessage(controller);
         this.workingInterfaceMessage = new WorkingInterfaceMessage(controller);
+        this.labInterfaceMessage = new AnalysInterfaceMessage(controller);
     }
 
     public void sendMessageToWorkWith(String messageIn) {
@@ -35,16 +34,16 @@ public class GetMessage {
         Message message = Message.fromJson(messageIn);
         switch (message.commandFirst){
             case LOGIN:
-                loginInterfaceMessage.getIntormation(message);
+                loginInterfaceMessage.getInformation(message);
                 break;
             case DOC:
-                workingInterfaceMessage.getIntormation(message);
+                workingInterfaceMessage.getInformation(message);
                 break;
             case LAB:
-
+                labInterfaceMessage.getInformation(message);
                 break;
             case SERVICE:
-                serviceInterfaceMessage.getIntormation(message);
+                serviceInterfaceMessage.getInformation(message);
                 break;
         }
 

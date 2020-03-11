@@ -77,6 +77,20 @@ public class RequirementSQL {
         }
     }
 
+
+
+    public ResultSet lookingForClint(String firstName, String secondName) throws SQLException {
+        preparedStatement = sqlServer.connection.prepareStatement
+                ("SELECT FirstName, SecondName, CityOfBirthday, DateOfBirthday FROM clients " +
+                        "where FirstName = ? AND SecondName = ?");
+        preparedStatement.setString(1,firstName);
+        preparedStatement.setString(2,secondName);
+        ResultSet rs = preparedStatement.executeQuery();
+        preparedStatement.addBatch();
+        return rs;        
+    }
+
+
     public ResultSet checkClient(String firstName, String secondName, String cityOfBirthday, String dateOfBirthday) throws SQLException {
         preparedStatement = sqlServer.connection.prepareStatement
                 ("SELECT FirstName, SecondName, CityOfBirthday, DateOfBirthday FROM clients " +
@@ -88,16 +102,5 @@ public class RequirementSQL {
         ResultSet rs = preparedStatement.executeQuery();
         preparedStatement.addBatch();
         return rs;
-    }
-
-    public ResultSet lookingForClint(String firstName, String secondName) throws SQLException {
-        preparedStatement = sqlServer.connection.prepareStatement
-                ("SELECT FirstName, SecondName, CityOfBirthday, DateOfBirthday FROM clients " +
-                        "where FirstName = ? AND SecondName = ?");
-        preparedStatement.setString(1,firstName);
-        preparedStatement.setString(2,secondName);
-        ResultSet rs = preparedStatement.executeQuery();
-        preparedStatement.addBatch();
-        return rs;        
     }
 }

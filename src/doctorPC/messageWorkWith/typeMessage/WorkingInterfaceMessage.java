@@ -26,7 +26,7 @@ public class WorkingInterfaceMessage implements DifferentTypeMessage{
     }
 
     @Override
-    public void getIntormation(Message message) {
+    public void getInformation(Message message) {
         switch (message.commandSecond){
             case ADD_CLIENT_OK:
                 alert.setHeaderText("Adding new client is ok");

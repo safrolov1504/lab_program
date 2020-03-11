@@ -6,9 +6,6 @@ import doctorPC.messageWorkWith.SendMessage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import messageCommons.Message;
 import messageCommons.variosOfMessage.AuthMessage;
@@ -24,7 +21,7 @@ public class LoginInterfaceMessage implements DifferentTypeMessage {
     }
 
     @Override
-    public void getIntormation(Message message) {
+    public void getInformation(Message message) {
         switch (message.commandSecond){
             case AUTH_MESSAGE:
             case AUTH_OK:
@@ -33,15 +30,21 @@ public class LoginInterfaceMessage implements DifferentTypeMessage {
                     case "Doctor":
                         ChangeStage.changeStageDo((Stage) controller.button_signIn.getScene().getWindow(),
                                 "resources/workInterface.fxml", "DoctorPC "+
-                                        authMessage.firstName+authMessage.secondName+" "+authMessage.role);
+                                        authMessage.firstName+" "+authMessage.secondName);
+                        //controller.docWork_nameDoc.setText("Doctor: ");
+                        //controller.docWork_nameDoc.setText("Doctor: "+authMessage.firstName+" "+authMessage.secondName);
                         break;
                     case "Lab":
-
+//                        controller.lab_nameDoc.setText("Lab PC: "+ authMessage.firstName+" "+authMessage.secondName);
+                        ChangeStage.changeStageDo((Stage) controller.button_signIn.getScene().getWindow(),
+                                "resources/analysisInterface.fxml", "Lab PC: "+
+                                        authMessage.firstName+" "+authMessage.secondName);
+                        //
                         break;
                     case "Service":
                         ChangeStage.changeStageDo((Stage) controller.button_signIn.getScene().getWindow(),
-                                "resources/serviceInterface.fxml", "ServicePC"+
-                                        authMessage.firstName+authMessage.secondName+" "+authMessage.role);
+                                "resources/serviceInterface.fxml", "Service PC: "+
+                                        authMessage.firstName+" "+authMessage.secondName+" "+authMessage.role);
                         break;
                 }
 

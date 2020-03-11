@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class ChangeStage {
 
-    public static void setStage(Stage primaryStage, String resources, String nameWindow) throws IOException {
+    private static void setStage(Stage primaryStage, String resources, String nameWindow) throws IOException {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(ChangeStage.class.getResource(resources));
 
@@ -28,6 +28,16 @@ public class ChangeStage {
     public static void  changeStageDo(Stage primaryStage,String resources, String nameWindow){
         // do what you have to do
         primaryStage.close();
+        Stage stage = new Stage();
+        try {
+            setStage(stage, resources, nameWindow);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void  changeStageDoWithoutClose(Stage primaryStage,String resources, String nameWindow){
+        // do what you have to do
         Stage stage = new Stage();
         try {
             setStage(stage, resources, nameWindow);

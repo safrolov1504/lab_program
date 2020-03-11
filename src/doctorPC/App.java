@@ -12,7 +12,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        ChangeStage.setStage(primaryStage, "resources/loginInterface.fxml","Welcome PC");
+        ChangeStage.changeStageDo(primaryStage, "resources/loginInterface.fxml","Welcome PC");
 
 //        FXMLLoader loader = new FXMLLoader();
 //        loader.setLocation(getClass().getResource("resources/serviceInterface.fxml"));

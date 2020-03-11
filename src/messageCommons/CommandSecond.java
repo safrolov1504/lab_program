@@ -16,4 +16,10 @@ public enum CommandSecond {
     ADD_CLIENT_NOK,
     ADD_CLIENT_OK,
 
+    VISIT,
+    VISIT_OK,
+    VISIT_NOK,
+    VISIT_ADDNEW,
+
+
 }

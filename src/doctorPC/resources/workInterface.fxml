@@ -61,7 +61,6 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label fx:id="docWork_nameDoc" text="Label" GridPane.columnIndex="5" GridPane.columnSpan="6" GridPane.rowIndex="1" />
                   <Label text="First Name" GridPane.columnSpan="3" GridPane.rowIndex="3" />
                   <Label text="Second Name" GridPane.columnSpan="3" GridPane.rowIndex="5" />
                   <Label text="City of birthday" GridPane.columnSpan="3" GridPane.rowIndex="7" />
@@ -69,8 +68,8 @@
                   <TextField fx:id="docWork_fieldFirstName" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="3" />
                   <TextField fx:id="docWork_fieldSecondName" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="5" />
                   <TextField fx:id="docWork_fieldCityBirth" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="7" />
-                  <Button mnemonicParsing="false" onAction="#docWork_buttonLooking" prefHeight="27.0" prefWidth="177.0" text="Look for a client" GridPane.columnIndex="8" GridPane.columnSpan="3" GridPane.rowIndex="5" />
-                  <Button mnemonicParsing="false" onAction="#docWork_buttonAddNewClient" prefHeight="27.0" prefWidth="179.0" text="Add a new client" GridPane.columnIndex="8" GridPane.columnSpan="3" GridPane.rowIndex="7" />
+                  <Button mnemonicParsing="false" onAction="#docWork_buttonLooking" prefHeight="27.0" prefWidth="177.0" text="Look for a client" GridPane.columnIndex="8" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+                  <Button mnemonicParsing="false" onAction="#docWork_buttonAddNewClient" prefHeight="27.0" prefWidth="179.0" text="Add a new client" GridPane.columnIndex="8" GridPane.columnSpan="3" GridPane.rowIndex="5" />
                   <TableView fx:id="docWork_table" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="10" GridPane.rowIndex="14" GridPane.rowSpan="10">
                     <columns>
                         <TableColumn fx:id="docWork_table_firstName" prefWidth="120.0" text="First Name" />
@@ -80,9 +79,11 @@
                         <TableColumn fx:id="docWork_table_dateVisit" prefWidth="104.0" text="Date of visit" />
                     </columns>
                   </TableView>
-                  <Button mnemonicParsing="false" onAction="#docWork_buttonAddNewVisit" prefHeight="27.0" prefWidth="180.0" text="Start a new visit" GridPane.columnIndex="8" GridPane.columnSpan="3" GridPane.rowIndex="9" />
+                  <Button mnemonicParsing="false" onAction="#docWork_buttonAddNewVisit" prefHeight="27.0" prefWidth="180.0" text="Start a new visit" GridPane.columnIndex="8" GridPane.columnSpan="3" GridPane.rowIndex="7" />
                   <Button mnemonicParsing="false" onAction="#docWork_buttonBack" prefHeight="27.0" prefWidth="79.0" text="Back" GridPane.columnIndex="11" GridPane.columnSpan="2" GridPane.rowIndex="25" />
                   <DatePicker fx:id="docWork_dateBirthday" prefHeight="27.0" prefWidth="233.0" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="9" />
+                  <Button mnemonicParsing="false" onAction="#docWork_buttonShowResult" prefHeight="27.0" prefWidth="179.0" text="Show a results" GridPane.columnIndex="8" GridPane.columnSpan="3" GridPane.rowIndex="9" />
+                  <TextField fx:id="docWork_nameDoc" editable="false" GridPane.columnIndex="4" GridPane.columnSpan="5" GridPane.rowIndex="1" />
                </children>
             </GridPane>
          </children>

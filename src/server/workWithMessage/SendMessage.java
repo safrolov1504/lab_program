@@ -3,6 +3,7 @@ package server.workWithMessage;
 import messageCommons.Message;
 import messageCommons.variosOfMessage.AuthMessage;
 import messageCommons.variosOfMessage.Client;
+import messageCommons.variosOfMessage.Visit;
 import server.serverWork.ClientHandler;
 import server.workWithSQL.User;
 
@@ -56,6 +57,17 @@ public class SendMessage {
             message = Message.creatAddClientNOk(client);
         } else {
             message = Message.creatAddClientOk(client);
+        }
+        clientHandler.sendMessage(message.toJson());
+    }
+
+    public void sendVisit(Visit visit) {
+        if(visit.secondName == null){
+            message = Message.creatVisitNok(visit);
+        } else if(visit.firstName == null){
+            message = Message.creatVisitOK(visit);
+        } else {
+            message = Message.creatVisitADDNew(visit);
         }
         clientHandler.sendMessage(message.toJson());
     }

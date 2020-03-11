@@ -2,6 +2,7 @@ package server.workWithMessage;
 
 import messageCommons.Message;
 import server.serverWork.ClientHandler;
+import server.workWithMessage.typeMessage.AnalisInterfaceMessage;
 import server.workWithMessage.typeMessage.LoginInterfaceMessage;
 import server.workWithMessage.typeMessage.ServiceInterfaceMessage;
 import server.workWithMessage.typeMessage.WorkingInterfaceMessage;
@@ -19,6 +20,7 @@ public class GetMessage {
     private LoginInterfaceMessage loginInterfaceMessage;
     private ServiceInterfaceMessage serviceInterfaceMessage;
     private WorkingInterfaceMessage workingInterfaceMessage;
+    private AnalisInterfaceMessage labInterfaceMessage;
 
     public GetMessage(ClientHandler clientHandler, SQLServer sqlServer, SendMessage sendMessage) {
         this.clientHandler = clientHandler;
@@ -27,6 +29,7 @@ public class GetMessage {
         loginInterfaceMessage = new LoginInterfaceMessage(sendMessage,requirementSQL);
         serviceInterfaceMessage = new ServiceInterfaceMessage(sendMessage,requirementSQL);
         workingInterfaceMessage = new WorkingInterfaceMessage(sendMessage,requirementSQL);
+        labInterfaceMessage = new AnalisInterfaceMessage(sendMessage,requirementSQL);
     }
 
     public void workWithInformation(String clientMessage) throws SQLException {
@@ -42,9 +45,8 @@ public class GetMessage {
                     workingInterfaceMessage.getInformation(message);
                     break;
                 case LAB:
-
+                    labInterfaceMessage.getInformation(message);
                     break;
-
                 case SERVICE:
                     serviceInterfaceMessage.getInformation(message);
                     break;

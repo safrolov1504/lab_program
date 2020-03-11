@@ -6,6 +6,7 @@ import messageCommons.CommandSecond;
 import messageCommons.Message;
 import messageCommons.variosOfMessage.AuthMessage;
 import messageCommons.variosOfMessage.Client;
+import messageCommons.variosOfMessage.Visit;
 
 public class SendMessage {
     private IService messageService;
@@ -50,6 +51,28 @@ public class SendMessage {
         } else if(commandSecond == CommandSecond.ADD_NEW_CLIENT){
            message = Message.creatAddClient(client);
         }
+        messageService.sendMessage(message.toJson());
+    }
+
+    public void sendAnalysis(String firstName, String secondName, String diagnose, String dateVisit,
+                             String cityBirthday, String dateBirthday,
+                             String bloodAnalysis, String urinAnalysis, String frcalAnalysis,
+                             String smearAnalysis, String dNAAnalysis, String paterAnalysis) {
+        Visit visit = new Visit();
+        visit.firstName = firstName;
+        visit.secondName = secondName;
+        visit.diagnose = diagnose;
+        visit.dateVisit = dateVisit;
+        visit.cityBirthday = cityBirthday;
+        visit.dateBirthday = dateBirthday;
+        visit.bloodAnalysis = bloodAnalysis;
+        visit.urinAnalysis = urinAnalysis;
+        visit.frcalAnalysis = frcalAnalysis;
+        visit.smearAnalysis = smearAnalysis;
+        visit.dNAAnalysis = dNAAnalysis;
+        visit.paterAnalysis = paterAnalysis;
+
+        Message message = Message.creatVisit(visit);
         messageService.sendMessage(message.toJson());
     }
 }

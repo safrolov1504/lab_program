@@ -10,7 +10,7 @@ public class Message {
 
     public AuthMessage authMessage;
     public Client client;
-    public NewUser newUser;
+    public Visit visit;
 
     public String toJson() {
         return new Gson().toJson(this);
@@ -101,5 +101,30 @@ public class Message {
         m.client = client;
         return m;
     }
+
+    public static Message creatVisit(Visit visit){
+        Message m = create(CommandFirst.LAB,CommandSecond.VISIT);
+        m.visit = visit;
+        return m;
+    }
+
+    public static Message creatVisitOK(Visit visit){
+        Message m = create(CommandFirst.LAB,CommandSecond.VISIT_OK);
+        m.visit = visit;
+        return m;
+    }
+
+    public static Message creatVisitNok(Visit visit){
+        Message m = create(CommandFirst.LAB,CommandSecond.VISIT_NOK);
+        m.visit = visit;
+        return m;
+    }
+
+    public static Message creatVisitADDNew(Visit visit){
+        Message m = create(CommandFirst.LAB,CommandSecond.VISIT_ADDNEW);
+        m.visit = visit;
+        return m;
+    }
+
 
 }

@@ -14,7 +14,7 @@ public class ServiceInterfaceMessage implements DifferentTypeMessage {
     }
 
     @Override
-    public void getIntormation(Message message) {
+    public void getInformation(Message message) {
         switch (message.commandSecond){
             case ADD_NEW:
                 addNewUser(message);

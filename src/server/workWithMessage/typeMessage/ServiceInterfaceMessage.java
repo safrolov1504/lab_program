@@ -44,11 +44,13 @@ public class ServiceInterfaceMessage implements DifferentTypeMessage {
         secondName  = authMessage.secondName;
         role = authMessage.role;
         profession = authMessage.profession;
-        authMessage = requirementSQL.addLogin(login, password, firstName, secondName, role, profession);
+
 
         if(login == "" || password == "" || firstName == "" || secondName == "" || role == "" || profession == ""){
             authMessage.message="Fill all fields";
             sendMessage.sendNewUser(authMessage);
+        } else {
+            authMessage = requirementSQL.addLogin(login, password, firstName, secondName, role, profession);
         }
 
         sendMessage.sendNewUser(authMessage);
