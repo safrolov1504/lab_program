@@ -16,6 +16,8 @@ public class AnalisInterfaceMessage implements DifferentTypeMessage {
     private Visit visit;
     private String firstName;
     private String secondName;
+    private String docFirstName;
+    private String docSecondName;
     private String diagnose;
     private String dateVisit;
     private String bloodAnalysis;
@@ -45,6 +47,8 @@ public class AnalisInterfaceMessage implements DifferentTypeMessage {
         visit = message.visit;
         firstName = visit.firstName;
         secondName = visit.secondName;
+        docFirstName = visit.docFirstName;
+        docSecondName = visit.docSecondName;
         diagnose = visit.diagnose;
         dateVisit = visit.dateVisit;
         bloodAnalysis = visit.bloodAnalysis;
@@ -72,7 +76,6 @@ public class AnalisInterfaceMessage implements DifferentTypeMessage {
                 visit.message = "Analysis was sent to lab";
                 //запрос!!!!!!!!!!
             } else {
-
                 visit.message = "There is no this client";
             }
         }

@@ -19,8 +19,8 @@ public class ChangeStage {
         primaryStage.setTitle(nameWindow);
         primaryStage.setScene(scene);
 
-        Controller primaryController = loader.getController();
-        primaryStage.setOnHidden(e -> primaryController.shutdown());
+        //Controller primaryController = controller;
+        //primaryStage.setOnHidden(e -> primaryController.shutdown());
 
         primaryStage.show();
     }
@@ -28,9 +28,9 @@ public class ChangeStage {
     public static void  changeStageDo(Stage primaryStage,String resources, String nameWindow){
         // do what you have to do
         primaryStage.close();
-        Stage stage = new Stage();
+        //Stage stage = new Stage();
         try {
-            setStage(stage, resources, nameWindow);
+            setStage(primaryStage, resources, nameWindow);
         } catch (IOException e) {
             e.printStackTrace();
         }

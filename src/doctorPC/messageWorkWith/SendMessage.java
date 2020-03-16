@@ -54,13 +54,16 @@ public class SendMessage {
         messageService.sendMessage(message.toJson());
     }
 
-    public void sendAnalysis(String firstName, String secondName, String diagnose, String dateVisit,
+    public void sendAnalysis(String firstName, String secondName, String docFirstName, String docSecondName,
+                             String diagnose, String dateVisit,
                              String cityBirthday, String dateBirthday,
                              String bloodAnalysis, String urinAnalysis, String frcalAnalysis,
                              String smearAnalysis, String dNAAnalysis, String paterAnalysis) {
         Visit visit = new Visit();
         visit.firstName = firstName;
         visit.secondName = secondName;
+        visit.docFirstName = docFirstName;
+        visit.docSecondName = docSecondName;
         visit.diagnose = diagnose;
         visit.dateVisit = dateVisit;
         visit.cityBirthday = cityBirthday;

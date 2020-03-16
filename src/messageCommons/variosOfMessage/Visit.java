@@ -14,4 +14,6 @@ public class Visit {
     public String message;
     public String cityBirthday;
     public String dateBirthday;
+    public String docFirstName;
+    public String docSecondName;
 }

@@ -6,6 +6,7 @@ import doctorPC.messageWorkWith.SendMessage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import messageCommons.Message;
 import messageCommons.variosOfMessage.AuthMessage;
@@ -31,6 +32,9 @@ public class LoginInterfaceMessage implements DifferentTypeMessage {
                         ChangeStage.changeStageDo((Stage) controller.button_signIn.getScene().getWindow(),
                                 "resources/workInterface.fxml", "DoctorPC "+
                                         authMessage.firstName+" "+authMessage.secondName);
+                        controller.docLabel = new Label("Doctor "+authMessage.firstName+" "+authMessage.secondName);
+                        controller.setDocFirstName(authMessage.firstName);
+                        controller.setDocSecondName(authMessage.secondName);
                         //controller.docWork_nameDoc.setText("Doctor: ");
                         //controller.docWork_nameDoc.setText("Doctor: "+authMessage.firstName+" "+authMessage.secondName);
                         break;

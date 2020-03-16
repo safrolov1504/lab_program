@@ -12,20 +12,21 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        ChangeStage.changeStageDo(primaryStage, "resources/loginInterface.fxml","Welcome PC");
+//        ChangeStage.changeStageDo(primaryStage, "resources/loginInterface.fxml","Welcome PC");
 
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource("resources/serviceInterface.fxml"));
-//
-//        Parent root = loader.load();
-//        Scene scene = new Scene(root);
-//        primaryStage.setTitle("Doctor PC");
-//        primaryStage.setScene(scene);
-//
-//        Controller primaryController = loader.getController();
-//        primaryStage.setOnHidden(e -> primaryController.shutdown());
-//
-//        primaryStage.show();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("resources/loginInterface.fxml"));
+
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Welcome PC");
+        primaryStage.setScene(scene);
+
+        Controller primaryController = loader.getController();
+        //primaryController.initialize();
+        primaryStage.setOnHidden(e -> primaryController.shutdown());
+
+        primaryStage.show();
     }
 
 

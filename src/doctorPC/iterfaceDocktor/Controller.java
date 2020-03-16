@@ -40,7 +40,7 @@ public class Controller implements Initializable {
     public @FXML TextField add_field_profName;
 
     //Working window
-    public @FXML TextField docWork_nameDoc;
+    public @FXML Label docLabel;
     public @FXML TextField docWork_fieldFirstName;
     public @FXML TextField docWork_fieldSecondName;
     public @FXML TextField docWork_fieldCityBirth;
@@ -70,6 +70,7 @@ public class Controller implements Initializable {
 
     //add new user from visit
     public @FXML Label addNewVisit_filedData;
+
     private String firstName;
     private String secondName;
     private String cityOfBirthday;
@@ -78,12 +79,25 @@ public class Controller implements Initializable {
     private IService messageService;
     private SendMessage sendMessage;
 
+
+    private String docFirstName;
+    private String docSecondName;
+
+    public void setDocFirstName(String docFirstName) {
+        this.docFirstName = docFirstName;
+    }
+    public void setDocSecondName(String docSecondName) {
+        this.docSecondName = docSecondName;
+    }
+
     public void shutdown() {
         //System.exit(0);
     }
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println("here");
         try{
             this.messageService = new MyServerDoctor(this);
             //this.getMessage = new GetMessage(this.messageService,this);
@@ -159,6 +173,8 @@ public class Controller implements Initializable {
         sendMessage.sendAnalysis(
                 analy_fieldFirstName.getText(),
                 analy_fieldSecondName.getText(),
+                docFirstName,
+                docSecondName,
                 analy_fieldDiagnose.getText(),
                 analy_dateVisit.getEditor().getText(),
                 analy_fieldCityBirth.getText(),
@@ -189,11 +205,11 @@ public class Controller implements Initializable {
         Stage stage = (Stage) addNewVisit_filedData.getScene().getWindow();
         stage.close();
 
-        sendMessage.lookingForClient(CommandSecond.ADD_NEW_CLIENT,
-                analy_fieldFirstName.getText(),
-                analy_fieldSecondName.getText(),
-                analy_fieldCityBirth.getText(),
-                analy_fieldDateBirthday.getEditor().getText());
+//        sendMessage.lookingForClient(CommandSecond.ADD_NEW_CLIENT,
+//                analy_fieldFirstName.getText(),
+//                analy_fieldSecondName.getText(),
+//                analy_fieldCityBirth.getText(),
+//                analy_fieldDateBirthday.getEditor().getText());
     }
 
     public void sendMessegeForAddNew(Visit visit) {
@@ -202,4 +218,5 @@ public class Controller implements Initializable {
         cityOfBirthday = visit.cityBirthday;
         dateOfBirthday = visit.dateBirthday;
     }
+
 }
