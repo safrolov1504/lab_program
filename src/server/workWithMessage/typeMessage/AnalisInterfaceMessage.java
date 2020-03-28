@@ -1,5 +1,6 @@
 package server.workWithMessage.typeMessage;
 
+import messageCommons.CommandSecond;
 import messageCommons.Message;
 import messageCommons.variosOfMessage.Visit;
 import server.workWithMessage.SendMessage;
@@ -58,28 +59,21 @@ public class AnalisInterfaceMessage implements DifferentTypeMessage {
         dNAAnalysis = visit.dNAAnalysis;
         paterAnalysis = visit.paterAnalysis;
         cityBirthday = visit.cityBirthday;
-        dateBirthday = visit.cityBirthday;
+        dateBirthday = visit.dateBirthday;
 
-        if(firstName.equals("") || secondName.equals("") || diagnose.equals("") || dateVisit.equals("")
-                || dateBirthday.equals("") || cityBirthday.equals("")){
-            visit.secondName = null;
-            visit.message = "First name, second name, diagnose, visit date, city of birthday and date of birthday should be filled";
-        } else if(bloodAnalysis.equals("false") && urinAnalysis.equals("false") && frcalAnalysis.equals("false") &&
-                smearAnalysis.equals("false") && dNAAnalysis.equals("false") && paterAnalysis.equals("false")){
-            visit.secondName = null;
-            visit.message = "Choose one of analysis";
-        } else {
             ResultSet rs = requirementSQL.checkClient(firstName, secondName,cityBirthday,dateBirthday);
             if (rs.isBeforeFirst()) {
-                visit.firstName = null;
-                visit.secondName = null;
                 visit.message = "Analysis was sent to lab";
-                //запрос!!!!!!!!!!
+                sendMessage.sendVisit(visit, CommandSecond.VISIT_OK);
+                requirementSQL.addNewVisit(firstName,secondName,cityBirthday,dateBirthday, diagnose, dateVisit,
+                        docFirstName,docSecondName,
+                        bloodAnalysis,urinAnalysis,frcalAnalysis,smearAnalysis,dNAAnalysis,paterAnalysis);
             } else {
                 visit.message = "There is no this client";
+                sendMessage.sendVisit(visit, CommandSecond.VISIT_ADDNEW);
             }
-        }
+//        }
 
-        sendMessage.sendVisit(visit);
+
     }
 }

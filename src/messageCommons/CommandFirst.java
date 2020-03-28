@@ -3,6 +3,8 @@ package messageCommons;
 public enum CommandFirst {
     LOGIN,
     DOC,
-    LAB,
+    ANALYSE,
     SERVICE,
+    RESULT,
+    LAB,
 }

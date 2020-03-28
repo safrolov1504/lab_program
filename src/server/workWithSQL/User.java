@@ -7,15 +7,18 @@ public class User {
     private String secondName;
     private String role;
     private String profession;
+    private String lab_analyses1;
+    private String lab_analyses2;
 
-
-    public User(String login, String password, String firstName, String secondName, String role, String profession) {
+    public User(String login, String password, String firstName, String secondName, String role, String profession, String lab_analyses1, String lab_analyses2) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
         this.role = role;
         this.profession = profession;
+        this.lab_analyses1 = lab_analyses1;
+        this.lab_analyses2 = lab_analyses2;
     }
 
     public String getLogin() {
@@ -42,15 +45,11 @@ public class User {
         return profession;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
-                ", role='" + role + '\'' +
-                ", profession='" + profession + '\'' +
-                '}';
+    public String getLab_analyses1() {
+        return lab_analyses1;
+    }
+
+    public String getLab_analyses2() {
+        return lab_analyses2;
     }
 }

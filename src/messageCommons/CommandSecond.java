@@ -10,6 +10,7 @@ public enum CommandSecond {
     ADD_NEW_NOK,
 
     LOOKING_FOR_CLIENT,
+    LOOKING_FOR_ALL,
     LOOKING_FOR_CLIENT_OK,
     LOOKING_FOR_CLIENT_NOK,
     ADD_NEW_CLIENT,
@@ -21,5 +22,12 @@ public enum CommandSecond {
     VISIT_NOK,
     VISIT_ADDNEW,
 
+    RESULT,
+    RESULT_OK,
+    RESULT_NOK,
 
+    LAB_SEND,
+    LAB_NO_ANALYSES,
+    LAB_READY,
+    LAB_UPDATE,
 }

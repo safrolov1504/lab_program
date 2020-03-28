@@ -5,8 +5,8 @@ public class Client {
     public String secondName;
     public String cityOfBirthday;
     public String dateOfBirthday;
-    public String message;
     public String dateVisit;
+    public String message;
 
     public Client() {
     }
