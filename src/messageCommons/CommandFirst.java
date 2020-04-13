@@ -7,4 +7,5 @@ public enum CommandFirst {
     SERVICE,
     RESULT,
     LAB,
+    END,
 }

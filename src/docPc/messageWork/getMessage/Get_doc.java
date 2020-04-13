@@ -10,6 +10,8 @@ import messageCommons.Message;
 import messageCommons.Text;
 import messageCommons.variosOfMessage.Client;
 
+import java.io.IOException;
+
 public class Get_doc implements GetInterface{
     private ControllerDoc controllerDoc;
     private Alert alert;
@@ -57,8 +59,6 @@ public class Get_doc implements GetInterface{
 
                 clear();
 
-                //setColumns();
-
                 Client client = new Client(firstName,secondName,cityOfBirthday, dateOfBirthday,dateVisit);
                 controllerDoc.clientData.add(client);
                 controllerDoc.docWork_table.setItems(controllerDoc.clientData);
@@ -72,9 +72,10 @@ public class Get_doc implements GetInterface{
                 break;
             case RESULT_OK:
                 App.getController().setMessage(message);
-                ChangeStage.changeStageDoWithoutClose((Stage) controllerDoc.docWork_table.getScene().getWindow(),
-                        "/docPc/resources/resultInterface.fxml", "Results "+
-                                message.visit.firstName+" "+message.visit.secondName);
+                    ChangeStage.changeStageDo((Stage) controllerDoc.docWork_table.getScene().getWindow(),
+                            "/docPc/resources/resultInterface.fxml", "Results "+
+                                    message.visit.firstName+" "+message.visit.secondName,
+                            false,false);
                 break;
             case RESULT_NOK:
                 alert = new Alert(Alert.AlertType.WARNING);
@@ -91,12 +92,4 @@ public class Get_doc implements GetInterface{
         controllerDoc.docWork_fieldSecondName.clear();
         controllerDoc.docWork_dateBirthday.getEditor().clear();
     }
-
-//    private void setColumns(){
-//        controllerDoc.docWork_table_firstName.setCellValueFactory(new PropertyValueFactory<Client,String>("firstName"));
-//        controllerDoc.docWork_table_secondName.setCellValueFactory(new PropertyValueFactory<Client,String>("secondName"));
-//        controllerDoc.docWork_table_city.setCellValueFactory(new PropertyValueFactory<Client,String>("cityOfBirthday"));
-//        controllerDoc.docWork_table_dateBirth.setCellValueFactory(new PropertyValueFactory<Client,String>("dateOfBirthday"));
-//        controllerDoc.docWork_table_dateVisit.setCellValueFactory(new PropertyValueFactory<Client,String>("dateVisit"));
-//    }
 }

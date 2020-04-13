@@ -1,5 +1,7 @@
 package server.serverWork;
 
+import messageCommons.CommandFirst;
+import messageCommons.Message;
 import server.workWithMessage.GetMessage;
 import server.workWithMessage.SendMessage;
 import server.workWithSQL.RequirementSQL;
@@ -41,13 +43,15 @@ public class ClientHandler {
             try {
                 while (true) {
                     String clientMessage = in.readUTF();
-                    //ниже тест!!!!
-                    getMessage.workWithInformation(clientMessage);
-                    //System.out.println(clientMessage);
+                    if(!getMessage.workWithInformation(clientMessage)){
+                        return;
+                    }
                 }
             } catch (IOException e) {
+                System.out.println(e.getMessage());
                 e.printStackTrace();
             } catch (SQLException e) {
+                System.out.println(e.getMessage());
                 e.printStackTrace();
             }
         }).start();
@@ -57,8 +61,7 @@ public class ClientHandler {
         try {
             out.writeUTF(message);
         } catch (IOException e) {
-            //MyServer.admin.error("Failed to send message to user " + clientName + ": "+ message);
-            //System.err.println("Failed to send message to user " + clientName + ": "+ message);
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }

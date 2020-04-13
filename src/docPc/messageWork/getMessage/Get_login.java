@@ -30,21 +30,23 @@ public class Get_login implements GetInterface{
                         System.out.println("Doctor");
                         ChangeStage.changeStageDo((Stage) controllerLogin.button_signIn.getScene().getWindow(),
                                 "/docPc/resources/docInterface.fxml", "DoctorPC "+
-                                        authMessage.firstName+" "+authMessage.secondName);
+                                        authMessage.firstName+" "+authMessage.secondName,
+                                true,true);
                         break;
                     case "lab":
                         System.out.println("Lab");
                         App.getController().setMessage(message);
                         ChangeStage.changeStageDo((Stage) controllerLogin.button_signIn.getScene().getWindow(),
                                 "/docPc/resources/labInterface.fxml", "Lab PC: "+
-                                        authMessage.firstName+" "+authMessage.secondName);
-                        //
+                                        authMessage.firstName+" "+authMessage.secondName,
+                                true,true);
                         break;
                     case "service":
                         System.out.println("Service");
                         ChangeStage.changeStageDo((Stage) controllerLogin.button_signIn.getScene().getWindow(),
                                 "/docPc/resources/serviceInterface.fxml", "Service PC: "+
-                                        authMessage.firstName+" "+authMessage.secondName+" "+authMessage.role);
+                                        authMessage.firstName+" "+authMessage.secondName+" "+authMessage.role,
+                                true,true);
                         break;
                     default:
                         throw new IllegalStateException("Unexpected value: " + authMessage.role);

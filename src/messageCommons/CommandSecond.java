@@ -30,4 +30,6 @@ public enum CommandSecond {
     LAB_NO_ANALYSES,
     LAB_READY,
     LAB_UPDATE,
+
+    END,
 }

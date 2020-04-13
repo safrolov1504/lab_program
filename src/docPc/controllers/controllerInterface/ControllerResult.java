@@ -59,10 +59,10 @@ public class ControllerResult extends ControllerInterface implements Initializab
     }
 
     private String checkResult(String result){
-        resultInt = Integer.parseInt(result);
         if(result.equals("false")){
             return "not need";
         } else {
+            resultInt = Integer.parseInt(result);
             if(resultInt < 20){
                 return result +" is low";
             } else if(resultInt<55){

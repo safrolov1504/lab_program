@@ -33,7 +33,7 @@ public class GetMessage {
         labInterfaceMessage = new LabInterfaceMessage(sendMessage,requirementSQL);
     }
 
-    public void workWithInformation(String clientMessage) throws SQLException {
+    public boolean workWithInformation(String clientMessage) throws SQLException {
             System.out.println(clientMessage);
 
             Message message = Message.fromJson(clientMessage);
@@ -57,6 +57,9 @@ public class GetMessage {
                 case LAB:
                     labInterfaceMessage.getInformation(message);
                     break;
+                case END:
+                    return false;
             }
+            return true;
     }
 }

@@ -2,6 +2,7 @@ package docPc.networkCommunication;
 
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
+import messageCommons.Message;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -68,4 +69,12 @@ public class Network {
     }
 
 
+    public void onClose() {
+        try {
+            Message message = Message.creatEnd();
+            outputStream.writeUTF(message.toJson());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

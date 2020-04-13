@@ -1,6 +1,8 @@
 package docPc.networkCommunication;
 
 import docPc.*;
+
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -18,6 +20,10 @@ public class MyServerDoctor implements IService {
         initialise();
     }
 
+    @Override
+    public void close() throws IOException {
+        network.onClose();
+    }
 
     private void initialise() {
         readProperties();

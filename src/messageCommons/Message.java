@@ -15,6 +15,11 @@ public class Message {
     public Visit visit;
     public Lab lab;
 
+    public static Message creatEnd(){
+        Message m = create(CommandFirst.END,CommandSecond.END);
+        return m;
+    }
+
     public String toJson() {
         return new Gson().toJson(this);
     }

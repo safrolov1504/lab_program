@@ -3,18 +3,14 @@ package docPc.controllers.controllerInterface;
 
 import docPc.messageWork.getMessage.Get_login;
 import docPc.messageWork.sendMessage.Send_login;
-import docPc.networkCommunication.IService;
 import docPc.*;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,8 +23,8 @@ public class ControllerLogin extends ControllerInterface implements Initializabl
     public @FXML Button button_signIn;
 
     //private IService messageService;
-    private Send_login send__loginInterfaceMessage;
-    private Get_login get_login;
+//    private Send_login sendInterface;
+//    private Get_login getInterface;
 
 
     @Override
@@ -36,10 +32,10 @@ public class ControllerLogin extends ControllerInterface implements Initializabl
         System.out.println("initialize login");
         messageService = App.getController().getMessageService();
 
-        this.get_login = new Get_login(this);
-        this.send__loginInterfaceMessage = new Send_login(messageService);
+        this.getInterface = new Get_login(this);
+        this.sendInterface = new Send_login(messageService);
 
-        App.getController().setGet_login(this.get_login);
+        App.getController().setGet_login(this.getInterface);
 
 //        stage = (Stage) this.button_signIn.getScene().getWindow();
 //        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
@@ -53,7 +49,7 @@ public class ControllerLogin extends ControllerInterface implements Initializabl
     //button sign in
     public void button_signIn(ActionEvent actionEvent) {
         System.out.println(textField_login.getText()+testField_pass.getText());
-        send__loginInterfaceMessage.checkLogin(textField_login.getText(),testField_pass.getText());
+        sendInterface.checkLogin(textField_login.getText(),testField_pass.getText());
 
     }
 

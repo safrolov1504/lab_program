@@ -3,6 +3,7 @@ package docPc.messageWork.getMessage;
 import docPc.controllers.controllerInterface.ControllerDoc;
 import docPc.controllers.controllerInterface.ControllerLab;
 import javafx.scene.control.Alert;
+import messageCommons.CommandSecond;
 import messageCommons.Message;
 import messageCommons.Text;
 import messageCommons.variosOfMessage.Client;
@@ -29,7 +30,12 @@ public class Get_lab implements GetInterface{
         this.dateVisit = message.lab.dateVisit;
         this.analyses1 = message.lab.analyses1;
         this.analyses2 = message.lab.analyses2;
-        if(!(analyses1.equals("false") && analyses2.equals("false"))){
+        if(message.commandSecond == CommandSecond.LAB_NO_ANALYSES){
+            alert = new Alert(Alert.AlertType.WARNING);
+            alert.setHeaderText("Error");
+            alert.setContentText("There is no analysis");
+            alert.showAndWait();
+        } else if(!(analyses1.equals("false") && analyses2.equals("false"))){
             if(analyses1.equals("false")){
                 analyses1 = "not need";
             }

@@ -2,7 +2,9 @@ package docPc.messageWork.sendMessage;
 
 import docPc.networkCommunication.IService;
 import javafx.scene.control.Alert;
+import messageCommons.CommandSecond;
 import messageCommons.Message;
+import messageCommons.variosOfMessage.Client;
 import messageCommons.variosOfMessage.Visit;
 
 public class Send_analyse extends SendInterface{
@@ -52,10 +54,24 @@ public class Send_analyse extends SendInterface{
         }
     }
 
-//    public void sendMessegeForAddNew(Visit visit) {
-////        firstName = visit.firstName;
-////        secondName = visit.secondName;
-////        cityOfBirthday = visit.cityBirthday;
-////        dateOfBirthday = visit.dateBirthday;
-//    }
+    public void sendAnalysisAndClient(Visit visit){
+        Client client = new Client();
+        Message message;
+        client.firstName = visit.firstName;
+        client.secondName = visit.secondName;
+        client.cityOfBirthday = visit.cityBirthday;
+        client.dateOfBirthday = visit.dateBirthday;
+        message = Message.creatAddClient(client);
+        messageService.sendMessage(message.toJson());
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        message = Message.creatVisit(visit);
+        messageService.sendMessage(message.toJson());
+    }
+
 }

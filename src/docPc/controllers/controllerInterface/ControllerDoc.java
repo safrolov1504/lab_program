@@ -6,12 +6,14 @@ import docPc.messageWork.sendMessage.Send_doc;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import docPc.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import messageCommons.CommandSecond;
 import messageCommons.variosOfMessage.Client;
 
@@ -75,12 +77,13 @@ public class ControllerDoc extends ControllerInterface implements Initializable 
                 docWork_dateBirthday.getEditor().getText().toLowerCase());
     }
 
-    public void docWork_buttonAddNewVisit(ActionEvent actionEvent) throws IOException {
+    public void docWork_buttonAddNewVisit(ActionEvent actionEvent) {
         Client client = docWork_table.getSelectionModel().getSelectedItem();
         App.getController().setClient(client);
         App.getController().setSelectionModel(docWork_table.getSelectionModel());
-        ChangeStage.changeStageDoWithoutClose((Stage) this.docWork_fieldCityBirth.getScene().getWindow(),
-                "/docPc/resources/analysisInterface.fxml","Visit PC");
+        ChangeStage.changeStageDo((Stage) this.docWork_fieldCityBirth.getScene().getWindow(),
+                    "/docPc/resources/analysisInterface.fxml","Visit PC",
+                    false,false);
     }
 
     public void docWork_buttonShowResult(ActionEvent actionEvent) {
@@ -96,11 +99,11 @@ public class ControllerDoc extends ControllerInterface implements Initializable 
         docWork_table.setItems(clientData);
     }
 
-    public void docWork_buttonBack(ActionEvent actionEvent) throws IOException {
+    public void docWork_buttonBack(ActionEvent actionEvent) {
         ChangeStage.changeStageDo((Stage) this.docWork_fieldCityBirth.getScene().getWindow(),
-                "/docPc/resources/loginInterface.fxml","Welcome PC");
+                    "/docPc/resources/loginInterface.fxml","Welcome PC",
+                    true,true);
     }
-
 
     private void setColumns(){
         this.docWork_table_firstName.setCellValueFactory(new PropertyValueFactory<Client,String>("firstName"));
@@ -109,6 +112,7 @@ public class ControllerDoc extends ControllerInterface implements Initializable 
         this.docWork_table_dateBirth.setCellValueFactory(new PropertyValueFactory<Client,String>("dateOfBirthday"));
         this.docWork_table_dateVisit.setCellValueFactory(new PropertyValueFactory<Client,String>("dateVisit"));
     }
+
 
 
 }

@@ -18,7 +18,8 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception{
         controller = new Controller();
 
-        ChangeStage.changeStageDo(primaryStage, "/docPc/resources/loginInterface.fxml","Welcome PC");
+        ChangeStage.changeStageDo(primaryStage, "/docPc/resources/loginInterface.fxml","Welcome PC",
+                false,true);
     }
 
 

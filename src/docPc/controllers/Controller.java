@@ -20,26 +20,31 @@ public class Controller {
 
 
     //get message
-    private Get_login get_login;
-    private Get_service get_service;
+//    private Get_login get_login;
+//    private Get_service get_service;
     //private Get_doc get_doc;
-    private GetInterface get_doc;
-    private Get_analyse get_analyse;
-    private Get_lab get_lab;
+//    private Get_analyse get_analyse;
+//    private Get_lab get_lab;
 
-    public void setGet_login(Get_login get_login) {
+    private GetInterface get_doc;
+    private GetInterface get_login;
+    private GetInterface get_service;
+    private GetInterface get_analyse;
+    private GetInterface get_lab;
+
+    public void setGet_login(GetInterface get_login) {
         this.get_login = get_login;
     }
-    public void setGet_service(Get_service get_service) {
+    public void setGet_service(GetInterface get_service) {
         this.get_service = get_service;
     }
     public void setGet_doc(GetInterface get_doc) {
         this.get_doc = get_doc;
     }
-    public void setGet_analyse(Get_analyse get_analyse) {
+    public void setGet_analyse(GetInterface get_analyse) {
         this.get_analyse = get_analyse;
     }
-    public void setGet_lab(Get_lab get_lab) {
+    public void setGet_lab(GetInterface get_lab) {
         this.get_lab = get_lab;
     }
 

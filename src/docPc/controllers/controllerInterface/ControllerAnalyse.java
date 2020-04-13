@@ -17,8 +17,8 @@ import java.util.ResourceBundle;
 public class ControllerAnalyse extends ControllerInterface implements Initializable {
 
     //private IService messageService;
-    private Send_analyse send_analyse;
-    private Get_analyse get_analyse;
+    //private Send_analyse sendInterface;
+    //private Get_analyse getInterface;
 
     //analyse
     public @FXML TextField analyse_fieldFirstName;
@@ -43,10 +43,10 @@ public class ControllerAnalyse extends ControllerInterface implements Initializa
         System.out.println("initialize analyse");
         messageService = App.getController().getMessageService();
         selectionModel = App.getController().getSelectionModel();
-        this.get_analyse = new Get_analyse(this);
-        this.send_analyse = new Send_analyse(messageService);
+        this.getInterface = new Get_analyse(this);
+        this.sendInterface = new Send_analyse(messageService);
         this.client = App.getController().getClient();
-        App.getController().setGet_analyse(get_analyse);
+        App.getController().setGet_analyse(getInterface);
         System.out.println(selectionModel.isEmpty());
 
         lab_nameDoc.setText("A new visit of doctor: " + App.getController().getFirstName()+" " + App.getController().getSecondName());
@@ -59,12 +59,13 @@ public class ControllerAnalyse extends ControllerInterface implements Initializa
         analyse_fieldFirstName.setText(client.firstName);
         analyse_fieldSecondName.setText(client.secondName);
         analyse_fieldCityBirth.setText(client.cityOfBirthday);
-        analyse_fieldDateBirthday.setUserData(client.dateVisit); // это не работате, посмотреть как сделать
+        analyse_fieldDateBirthday.getEditor().setText(client.dateVisit);
+        //analyse_fieldDateBirthday.setUserData(client.dateVisit); // это не работате, посмотреть как сделать
     }
 
 
     public void analyse_send(ActionEvent actionEvent) {
-            send_analyse.sendAnalysis(
+            sendInterface.sendAnalysis(
                 analyse_fieldFirstName.getText().toLowerCase(),
                 analyse_fieldSecondName.getText().toLowerCase(),
                     App.getController().getFirstName().toLowerCase(),
@@ -85,4 +86,5 @@ public class ControllerAnalyse extends ControllerInterface implements Initializa
         Stage stage = (Stage) analyse_bloodAnalysis.getScene().getWindow();
         stage.close();
     }
+
 }

@@ -3,7 +3,6 @@ package docPc.controllers.controllerInterface;
 import docPc.controllers.ChangeStage;
 import docPc.messageWork.getMessage.Get_service;
 import docPc.messageWork.sendMessage.Send_service;
-import docPc.networkCommunication.IService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,18 +27,18 @@ public class ControllerService extends ControllerInterface implements Initializa
     public @FXML TextField add_field_profName;
 
 //    private IService messageService;
-    private Send_service send_service;
-    private Get_service get_service;
+//    private Send_service sendInterface;
+//    private Get_service getInterface;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("initialize service");
         messageService = App.getController().getMessageService();
 
-        this.get_service = new Get_service(this);
-        this.send_service = new Send_service(messageService);
+        this.getInterface = new Get_service(this);
+        this.sendInterface = new Send_service(messageService);
 
-        App.getController().setGet_service(get_service);
+        App.getController().setGet_service(getInterface);
     }
 
     //buttons service
@@ -52,7 +51,7 @@ public class ControllerService extends ControllerInterface implements Initializa
     }
 
     private void addNewUser(String typeUser) {
-        send_service.addNewUser(typeUser,
+        sendInterface.addNewUser(typeUser,
                 add_field_login.getText(),
                 add_field_pass.getText(),
                 add_field_firstName.getText().toLowerCase(),
@@ -60,8 +59,9 @@ public class ControllerService extends ControllerInterface implements Initializa
                 add_field_profName.getText().toLowerCase());
     }
 
-    public void add_buttonBack(ActionEvent actionEvent) throws IOException {
+    public void add_buttonBack(ActionEvent actionEvent) {
         ChangeStage.changeStageDo((Stage) this.add_field_firstName.getScene().getWindow(),
-                "/docPc/resources/loginInterface.fxml","Welcome PC");
+                    "/docPc/resources/loginInterface.fxml","Welcome PC",
+                    true,true);
     }
 }

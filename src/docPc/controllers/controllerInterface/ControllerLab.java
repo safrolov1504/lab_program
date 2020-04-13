@@ -4,7 +4,6 @@ import docPc.App;
 import docPc.controllers.ChangeStage;
 import docPc.messageWork.getMessage.Get_lab;
 import docPc.messageWork.sendMessage.Send_lab;
-import docPc.networkCommunication.IService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,21 +18,17 @@ import javafx.stage.Stage;
 import messageCommons.Message;
 import messageCommons.variosOfMessage.Lab;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 public class ControllerLab extends ControllerInterface implements Initializable {
-//    private IService messageService;
-    private Get_lab get_lab;
-    private Send_lab send_lab;
+
     private Message message;
     private String analyses1;
     private String analyses2;
     private ArrayList<Lab> labs = new ArrayList<>();
-    private ArrayList<Lab> labsSend = new ArrayList<>();
     private Random random = new Random();
 
     public @FXML Label labLabel;
@@ -50,7 +45,7 @@ public class ControllerLab extends ControllerInterface implements Initializable 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("initialize doc");
+        System.out.println("initialize lab");
         messageService = App.getController().getMessageService();
 
         this.message = App.getController().getMessage();
@@ -59,21 +54,21 @@ public class ControllerLab extends ControllerInterface implements Initializable 
         analyses1 = message.authMessage.lab_analyses1;
         analyses2 = message.authMessage.lab_analyses2;
 
-        this.get_lab = new Get_lab(this, analyses1,analyses2);
-        this.send_lab = new Send_lab(messageService,analyses1,analyses2);
-        App.getController().setGet_lab(get_lab);
+        this.getInterface = new Get_lab(this, analyses1,analyses2);
+        this.sendInterface = new Send_lab(messageService,analyses1,analyses2);
+        App.getController().setGet_lab(getInterface);
 
         setColumns();
     }
 
     public void labCheckNewAnalyses(ActionEvent actionEvent) {
         resultData.clear();
-        send_lab.sendRequestAddNewAnalyses();
+        sendInterface.sendRequestAddNewAnalyses();
     }
 
     public void labShowAllResult(ActionEvent actionEvent) {
         resultData.clear();
-        send_lab.sendRequestAddReadyAnalyses();
+        sendInterface.sendRequestAddReadyAnalyses();
     }
 
     public void labSendAllAnalyses(ActionEvent actionEvent) {
@@ -142,7 +137,7 @@ public class ControllerLab extends ControllerInterface implements Initializable 
                 }
             }
         }
-        send_lab.sendUpdate(labs);
+        sendInterface.sendUpdate(labs);
     }
 
     public void labButtonClean(ActionEvent actionEvent) {
@@ -152,19 +147,19 @@ public class ControllerLab extends ControllerInterface implements Initializable 
 
     public void labButtonBack(ActionEvent actionEvent) {
         ChangeStage.changeStageDo((Stage) this.lab_table.getScene().getWindow(),
-                "/docPc/resources/loginInterface.fxml","Welcome PC");
+                    "/docPc/resources/loginInterface.fxml","Welcome PC",
+                    true,true);
     }
 
     private void setColumns(){
-        //this.lab_table = new TableView<>(FXCollections.observableArrayList());
-        //this.lab_analyses1.
         this.lab_table_analysisNumber.setCellValueFactory(new  PropertyValueFactory<Lab,String>("idAnalyses"));
         this.lab_table_clientNumber.setCellValueFactory(new PropertyValueFactory<Lab,String>("idClient"));
         this.lab_table_dateVisit.setCellValueFactory(new PropertyValueFactory<Lab,String>("dateVisit"));
 
-        //this.lab_analyses1 = new TableColumn<>(message.authMessage.lab_analyses1);
+        this.lab_analyses1.setText(message.authMessage.lab_analyses1);
         this.lab_analyses1.setCellValueFactory(new PropertyValueFactory<Lab,String>("analyses1"));
-        //this.lab_analyses2 = new TableColumn<>(message.authMessage.lab_analyses2);
+
+        this.lab_analyses2.setText(message.authMessage.lab_analyses2);
         this.lab_analyses2.setCellValueFactory(new PropertyValueFactory<Lab,String>("analyses2"));
         //this.lab_table.getColumns().addAll(this.lab_table_clientNumber, this.lab_table_dateVisit,this.lab_analyses1,this.lab_analyses2);
     }
